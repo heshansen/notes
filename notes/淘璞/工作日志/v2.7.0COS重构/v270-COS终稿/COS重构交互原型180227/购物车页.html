@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>购物车页</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/购物车页/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/购物车页/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Group) -->
+      <div id="u6183" class="ax_default">
+
+        <!-- Unnamed (Image) -->
+        <div id="u6184" class="ax_default _图片">
+          <img id="u6184_img" class="img " src="images/购物车页/u6184.png"/>
+          <!-- Unnamed () -->
+          <div id="u6185" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6186" class="ax_default _形状">
+          <div id="u6186_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6187" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6188" class="ax_default _形状">
+          <div id="u6188_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6189" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6190" class="ax_default _形状">
+          <div id="u6190_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6191" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6192" class="ax_default _文本段落">
+        <div id="u6192_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6193" class="text" style="visibility: visible;">
+          <p style="font-size:13px;"><span>1.与商品、订单、库存、促销、优惠券等均有关联；</span></p><p style="font-size:13px;"><span><br></span></p><p style="font-size:13px;"><span>2.购物车页商品展示逻辑：同一门店商品集中展示，展示顺序按照加入购物车时间倒序排列，若在原有商品所属门店下新增同门店商品，则整个门店商品自动展示于第一位，默认勾选中当前当次新增的商品；</span></p><p style="font-size:13px;"><span><br></span></p><p style="font-size:13px;"><span>3.若同一门店内的多件商品中有部分商品仅支持快递，部分商品还支持自提，在点击结算后，进入结算页，该门店商品将一律按照自提形式展示，可整个门店商品切换为快递，若不切换，则此仅支持快递的商品也将按照自提形式生成订单；</span></p><p style="font-size:13px;"><span><br></span></p><p style="font-size:13px;"><span>4.若同一门店内多件商品中有部分商品仅支持自提，部分商品还支持快递，在点击结算后，进入结算页，该门店商品将一律按照自提形式展示，且该门店内所有商品仅支持自提形式生成订单，不可切换为快递配送方式。</span></p><p style="font-size:13px;"><span><br></span></p><p style="font-size:16px;"><span style="font-size:13px;">5.购物车为空时，页面内显示图片占位符（#2001），并在下方显示文字提示“购物车空空如也，去</span><span> 首页 </span><span style="font-size:13px;">添加”，点击提示内的“首页”，跳转至页面“首页”</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6194" class="ax_default _文本段落">
+        <div id="u6194_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6195" class="text" style="visibility: visible;">
+          <p><span>仅可快递</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6196" class="ax_default ellipse">
+        <img id="u6196_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6197" class="text" style="visibility: visible;">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6198" class="ax_default ellipse">
+        <img id="u6198_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6199" class="text" style="visibility: visible;">
+          <p><span>2</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6200" class="ax_default box_2">
+        <div id="u6200_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6201" class="text" style="visibility: visible;">
+          <p><span>购物车页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6202" class="ax_default ellipse">
+        <img id="u6202_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6203" class="text" style="visibility: visible;">
+          <p><span>5</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6204" class="ax_default ellipse">
+        <img id="u6204_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6205" class="text" style="visibility: visible;">
+          <p><span>4</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6206" class="ax_default ellipse">
+        <img id="u6206_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6207" class="text" style="visibility: visible;">
+          <p><span>6</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6208" class="ax_default ellipse">
+        <img id="u6208_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6209" class="text" style="visibility: visible;">
+          <p><span>7</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6210" class="ax_default ellipse">
+        <img id="u6210_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6211" class="text" style="visibility: visible;">
+          <p><span>8</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6212" class="ax_default ellipse">
+        <img id="u6212_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6213" class="text" style="visibility: visible;">
+          <p><span>9</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6214" class="ax_default ellipse">
+        <img id="u6214_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6215" class="text" style="visibility: visible;">
+          <p><span>10</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6216" class="ax_default ellipse">
+        <img id="u6216_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6217" class="text" style="visibility: visible;">
+          <p><span>11</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6218" class="ax_default _文本段落">
+        <img id="u6218_img" class="img " src="images/注册_登录页/u235.png"/>
+        <!-- Unnamed () -->
+        <div id="u6219" class="text" style="visibility: visible;">
+          <p><span>点击底部导航栏的“购物车”按钮进入时，不显示“返回”按钮，其他页面进入到购物车页时，显示“返回”按钮，且点击返回，回到上一页面</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6220" class="ax_default box_21">
+        <div id="u6220_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6221" class="text" style="visibility: visible;">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6222" class="ax_default _文本段落">
+        <img id="u6222_img" class="img " src="images/注册_登录页/u249.png"/>
+        <!-- Unnamed () -->
+        <div id="u6223" class="text" style="visibility: visible;">
+          <p><span>标题栏区域，上滑页面，标题栏固定在页面顶部</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6224" class="ax_default box_21">
+        <div id="u6224_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6225" class="text" style="visibility: visible;">
+          <p><span>2</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6226" class="ax_default _文本段落">
+        <img id="u6226_img" class="img " src="images/购物车页/u6226.png"/>
+        <!-- Unnamed () -->
+        <div id="u6227" class="text" style="visibility: visible;">
+          <p><span>未选中任何商品数据时，“清除“按钮置灰不可点击；</span></p><p><span><br></span></p><p><span>选中部分商品或全选所有商品，点击“清除”，弹出确认提示框”确认删除已选中商品？&nbsp; &nbsp; &nbsp; 确定&nbsp; &nbsp;&nbsp; 取消“ 点击确定，则删除当前已选中的商品，点击取消则弹框消失</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6228" class="ax_default box_21">
+        <div id="u6228_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6229" class="text" style="visibility: visible;">
+          <p><span>3</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6230" class="ax_default _文本段落">
+        <img id="u6230_img" class="img " src="images/注册_登录页/u235.png"/>
+        <!-- Unnamed () -->
+        <div id="u6231" class="text" style="visibility: visible;">
+          <p><span>门店单选框：点击可选中，选中后高亮选中标识（同时该门店下所有商品单选框自动跟随变更为已选中状态），再次点击取消选中状态</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6232" class="ax_default box_21">
+        <div id="u6232_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6233" class="text" style="visibility: visible;">
+          <p><span>4</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6234" class="ax_default _文本段落">
+        <img id="u6234_img" class="img " src="images/注册_登录页/u249.png"/>
+        <!-- Unnamed () -->
+        <div id="u6235" class="text" style="visibility: visible;">
+          <p><span>门店名称：显示字数最多显示18字，更多以...代替</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6236" class="ax_default box_21">
+        <div id="u6236_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6237" class="text" style="visibility: visible;">
+          <p><span>5</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6238" class="ax_default _文本段落">
+        <img id="u6238_img" class="img " src="images/注册_登录页/u259.png"/>
+        <!-- Unnamed () -->
+        <div id="u6239" class="text" style="visibility: visible;">
+          <p><span>商品单选框：点击可选中，选中后高亮选中标识，再次点击取消选中</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6240" class="ax_default box_21">
+        <div id="u6240_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6241" class="text" style="visibility: visible;">
+          <p><span>6</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6242" class="ax_default _文本段落">
+        <img id="u6242_img" class="img " src="images/首页/u3074.png"/>
+        <!-- Unnamed () -->
+        <div id="u6243" class="text" style="visibility: visible;">
+          <p><span>商品信息：商品图片（显示已选中的SKU属性对应图片，若无则显示商品主图1）、商品名称（显示一行，更多以...显示）、商品SKU属性及值（已选中的SKU属性值）、商品单价（自提淘璞价或仅支持快递的商品对应的快递淘璞价）</span></p><p><span><br></span></p><p><span>对于仅支持快递的商品需增加”仅支持快递“标签标识</span></p><p><span><br></span></p><p><span>左滑区域，删除按钮，点击弹出确认删除提示语“确定删除该商品吗？ 取消&nbsp; 确认”点击确认，则删除；点击取消，则弹框消失</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6244" class="ax_default box_21">
+        <div id="u6244_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6245" class="text" style="visibility: visible;">
+          <p><span>7</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6246" class="ax_default box_21">
+        <div id="u6246_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6247" class="text" style="visibility: visible;">
+          <p><span>8</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6248" class="ax_default _文本段落">
+        <img id="u6248_img" class="img " src="images/购物车页/u6248.png"/>
+        <!-- Unnamed () -->
+        <div id="u6249" class="text" style="visibility: visible;">
+          <p><span>购买数量：数量显示该商品在该门店下同一SKU属性值添加进入购物车的总数量，当总数量已达到该SKU下商品的上架数时，数量不可再增加；</span></p><p><span><br></span></p><p><span>数量为1时，减号置灰不可点击；点击加号，每次数量值+1，加至上架数时，继续点击加号，toast提示框“已达最多可购买数量”，且数量控件中数值不变；</span></p><p><span><br></span></p><p><span>点击数字框，光标聚焦在数字后，调起数字输入键盘，可删除并输入数字，输入数字小于1或为空时，toast提示“商品数量至少为1哦”，同时数值自动变为1，输入数字大于上架数时，toast提示“已超过最多可购买数量”，数值自动变为1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6250" class="ax_default _文本段落">
+        <img id="u6250_img" class="img " src="images/注册_登录页/u259.png"/>
+        <!-- Unnamed () -->
+        <div id="u6251" class="text" style="visibility: visible;">
+          <p><span>点击选中当前购物车内所有商品记录，且所有门店商品对应单选框均为选中状态</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6252" class="ax_default box_21">
+        <div id="u6252_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6253" class="text" style="visibility: visible;">
+          <p><span>9</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6254" class="ax_default _文本段落">
+        <img id="u6254_img" class="img " src="images/购物车页/u6226.png"/>
+        <!-- Unnamed () -->
+        <div id="u6255" class="text" style="visibility: visible;">
+          <p><span>已选总计即为当前选中的所有门店商品的促销后金额总计值（各商品单价*各商品数量-促销抵扣金额总和）；共节省=商品经打折或满减等促销活动引起的折扣金额总和（如某商品单价200，购买数量为5件，该商品当前有8折活动，则此处已选总计为800，共节省为200）</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6256" class="ax_default box_21">
+        <div id="u6256_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6257" class="text" style="visibility: visible;">
+          <p><span>10</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6258" class="ax_default _文本段落">
+        <img id="u6258_img" class="img " src="images/注册_登录页/u259.png"/>
+        <!-- Unnamed () -->
+        <div id="u6259" class="text" style="visibility: visible;">
+          <p><span>点击区域，校验是否有选中商品，若无则toast提示”你还没有选择商品哦“，若有选中商品则跳转至结算页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6260" class="ax_default box_21">
+        <div id="u6260_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6261" class="text" style="visibility: visible;">
+          <p><span>11</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6262" class="ax_default _文本段落">
+        <img id="u6262_img" class="img " src="images/分类列表页/u4156.png"/>
+        <!-- Unnamed () -->
+        <div id="u6263" class="text" style="visibility: visible;">
+          <p><span>展示规则：按照门店维度进行展示，已添加到购物车的商品，后期下架后（上架数为0或已注销的）暂不做展示（后期会增加架标签进行展示）</span></p><p><span><br></span></p><p><span>排序规则：按照商品添加进入购物车的时间倒序排列，若A门店已有商品A在购物车内，此时再添加门店A下的商品B进入购物车，则A门店展示位置调整至页面顶部；同一门店下的多商品按照添加进入购物车的时间倒序排列</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6264" class="ax_default box_21">
+        <div id="u6264_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6265" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Paragraph) -->
+      <div id="u6266" class="ax_default _文本段落">
+        <img id="u6266_img" class="img " src="images/注册_登录页/u235.png"/>
+        <!-- Unnamed () -->
+        <div id="u6267" class="text" style="visibility: visible;">
+          <p><span>附说明：一期暂不在门店维度显示促销相关信息（当前系统中若门店内商品有参与促销活动，则在对应门店名称下方有显示促销类型及节省值）</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6268" class="ax_default box_21">
+        <div id="u6268_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6269" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u6270" class="ax_default">
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6271" class="ax_default box_3">
+          <div id="u6271_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6272" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Shape) -->
+        <div id="u6273" class="ax_default icon">
+          <img id="u6273_img" class="img " src="images/购物车页/u6273.png"/>
+          <!-- Unnamed () -->
+          <div id="u6274" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u6275" class="ax_default ellipse">
+        <img id="u6275_img" class="img " src="images/注册_登录页/u169.png"/>
+        <!-- Unnamed () -->
+        <div id="u6276" class="text" style="visibility: visible;">
+          <p><span>3</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u6277" class="ax_default">
+
+        <!-- Unnamed (Image) -->
+        <div id="u6278" class="ax_default _图片">
+          <img id="u6278_img" class="img " src="images/购物车页/u6184.png"/>
+          <!-- Unnamed () -->
+          <div id="u6279" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6280" class="ax_default _形状">
+          <div id="u6280_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6281" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6282" class="ax_default _形状">
+          <div id="u6282_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6283" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6284" class="ax_default _形状">
+          <div id="u6284_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6285" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6286" class="ax_default _文本段落">
+        <div id="u6286_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6287" class="text" style="visibility: visible;">
+          <p><span>仅可快递</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6288" class="ax_default box_2">
+        <div id="u6288_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6289" class="text" style="visibility: visible;">
+          <p><span>购物车页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u6290" class="ax_default">
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u6291" class="ax_default box_3">
+          <div id="u6291_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u6292" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Shape) -->
+        <div id="u6293" class="ax_default icon">
+          <img id="u6293_img" class="img " src="images/购物车页/u6273.png"/>
+          <!-- Unnamed () -->
+          <div id="u6294" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u6295" class="ax_default _图片">
+        <img id="u6295_img" class="img " src="images/购物车页/u6295.png"/>
+        <!-- Unnamed () -->
+        <div id="u6296" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u6297" class="ax_default box_2">
+        <div id="u6297_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u6298" class="text" style="visibility: visible;">
+          <p><span>删除</span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
