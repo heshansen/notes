@@ -1,0 +1,212 @@
+# 请求服务名称
+
+* 生态圈服务-促销服务
+
+# 请求详情
+
+##　获取赠品第三级种类列表
+
+* 老系统方法所在：/ecommerce-emall-marketing/src/main/java/com/topbaby/ecommerce/marketing/service/impl/MarketingActivityItemServiceImpl.java-844行
+* 数据SQL所在：/ecommerce-emall-marketing/src/main/resources/META-INF/models/mysql/ActivityItemGiftMapper.xml-379行
+
+#### 请求参数
+
+无
+
+#### 接口返回数据示例
+
+```json
+ "categoryList": [
+        {
+            "catId": 60,
+            "name": "连衣裙",
+            "childCatList": null
+        },
+        {
+            "catId": 70,
+            "name": "运动鞋",
+            "childCatList": null
+        },
+        {
+            "catId": 479,
+            "name": "门票",
+            "childCatList": null
+        }
+    ]
+```
+
+
+## 获取当前会员当前赠品的统计信息
+
+#### 请求参数
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|memberId|Long|会员ID|
+|giftId|Long|赠品ID|
+|ruleId|Long|档位ID|
+|brandshopSeq|Long|门店Seq|
+|activityItemId|Long|子活动ID|
+
+#### 接口返回数据示例
+
+```json
+{
+    "giftSeq": 60,//赠品Seq
+    "memberId":641,//会员ID
+    "receiveCount": 5,//赠品领取数量
+    "limitCount": 5 ,//赠品领取上限数量
+    "usedCount": 5 //赠品已使用数量
+}
+```
+
+## 获取赠品信息
+
+#### 请求参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|giftSeq|Long|赠品Seq|
+
+#### 接口返回数据示例
+
+```json
+"merchantGift": {
+        "status": "1",
+        "limitCount": 0,
+        "remark": "1.此赠品支持快递配送\n",
+        "merchantId": 213,
+        "giftCount": 100,
+        "allocateCount": 85,
+        "remainCount": 100,
+        "effectiveDays": 14,
+        "imageName": "activityPicture/image/0bauhhek671v1515031443116.jpg",
+        "costPrice": 12,
+        "catId": 60,
+        "marketPrice": 123,
+        "name": "MQD快递赠品-1",
+        "type": "2",
+        "giftId": 89
+    }
+```
+
+## 获取非指定商户的赠品列表
+
+#### 请求参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|merchantId|Long|商户ID|
+|giftStatus|Long|赠品状态：1-已发布|
+
+#### 接口返回数据示例
+
+```json
+[
+    {
+        "status": "1",
+        "limitCount": 0,
+        "remark": "1.此赠品支持快递配送\n",
+        "merchantId": 213,
+        "giftCount": 100,
+        "allocateCount": 85,
+        "remainCount": 100,
+        "effectiveDays": 14,
+        "imageName": "activityPicture/image/0bauhhek671v1515031443116.jpg",
+        "costPrice": 12,
+        "catId": 60,
+        "marketPrice": 123,
+        "name": "MQD快递赠品-1",
+        "type": "2",
+        "giftId": 89
+    },
+    {....}
+]
+```
+
+## 获取优惠券信息
+
+* 老系统方法所在：/ecommerce-emall-marketing-action-cos/src/main/java/com/topbaby/ecommerce/marketing/service/impl/CosMarketingServiceImpl.java-469行
+
+#### 请求参数
+
+* 平台优惠券传入参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|activityRuleId|Long|活动规则Id|
+|merchantId|Long|商户ID|
+|type|String|优惠券发放规则:0-注册赠送，1-订单完成赠送 ，2-共享赠送|
+|status|String|优惠券状态|
+
+* 商户优惠券传入参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|activityRuleId|Long|活动规则Id|
+|activityItemId|Long|赠品Seq|
+|status|Long|优惠券状态|
+
+#### 接口返回数据示例
+
+```json
+"couponList": [
+        {
+            "couponReleaseId": 497,//优惠券Seq
+            "type": "1",//
+            "name": "MQD",
+            "conditionAmount": 100,
+            "couponAmount": 20,
+            "activityRuleId": 216,
+            "ruleScope": "0",
+            "ruleAmount": 0,
+            "status": null,
+            "brandshopUrl": null,
+            "sourceType": "A",
+            "couponCount": 10,
+            "receiveCount": 0,
+            "limitCount": 0,
+            "memberReceiveCount": 0,
+            "defaultSelected": false,
+            "effectiveDays": 2
+        },{...}
+    ]
+```
+## 获取优惠券的统计信息
+
+#### 请求参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|memberId|Long|会员Seq|
+|couponReleaseId|Long|优惠券Seq|
+|sourceType|String|优惠券类型|
+|activityItemId|String|子活动ID|
+|activityRuleId|String|规则ID|
+
+#### 接口返回数据示例
+
+```json
+{
+    "useCouponCount":5,//已使用数量
+    "acceptCouponCount":5//已领取数量
+}
+```
+
+## 获取优惠券的发布信息
+
+#### 请求参数
+
+|参数名|参数类型|示例|
+|:------:|:------:|:------:|
+|couponReleaseId|Long|优惠券Seq|
+
+#### 接口返回数据示例
+
+```json
+{
+    "couponReleaseId":56161,//优惠券Seq
+    "startTime":null,//开始时间
+    "endTime":null,//结束时间
+    "distributeWay":0//发放方式:'0'-需要领取,'1'-直接推送,'2'-共享赠送
+}
+```

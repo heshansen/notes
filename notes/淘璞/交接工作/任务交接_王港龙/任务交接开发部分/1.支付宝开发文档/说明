@@ -1,0 +1,10 @@
+支付服务（支付宝）
+API开发情况：已完成
+测试情况：未完成测试
+备注：公钥私钥的配置
+源码（含支付宝、微信支付、银联支付）：https://git.91topbaby.com/topbaby/payment-service
+API接口文档地址（不含支付宝，后期需要补上）：https://project.91topbaby.com/projects/topbaby/wiki/%E6%94%AF%E4%BB%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API
+支付宝开发文档
+a) 支付宝APP支付公钥文档，文档格式text
+b) 支付宝APP支付商户私钥文档，文档格式text
+c) 支付宝集成文档，详见《蚂蚁金服开发者中心》

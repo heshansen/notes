@@ -1,0 +1,666 @@
+# 生态圈服务相关API-V270
+
+### 一、统一说明
+
+* 后端开发负责人：王港龙
+
+* 失败统一返回数据接口：
+
+```json
+{
+  "message": "XXXX",
+  "title": "XXX",
+  "type": "error/info/warning/success",
+  "errors": ["error1","error2","error3",...] //错误信息列表（默认null）
+}
+```
+
+## 二、接口汇总表
+
+| 接口描述|新接口地址|请求类型|对应页面|关联服务与备注|
+|:-------------|:-------------| :-----:|:------|:------|
+|获取礼包展示列表|/ecosystem/giftPackage/getList|GET|礼包展示页|关联促销服务-获取赠品信息
+|获取礼包详情|/ecosystem/giftPackage/getGiftPack|GET|礼包详情页，领取成功页|关联促销服务-获取优惠券、赠品信息
+|获取礼包筛选参数信息|/ecosystem/giftPackage/getFilter|GET|礼包展示页|关联公共服务-获取区域、种类信息
+|获取礼包领取门店列表|/ecosystem/giftPackage/getReceivableBrandshopList|GET|礼包领取页|关联商户服务-获取门店信息
+|获取礼包领取门店列表(详情页展示用)|/ecosystem/giftPackage/getBrandshopList|GET|礼包详情页|关联商户服务-获取门店信息
+|获取当前有效的父活动信息|/ecosystem/giftPackage/getActivity|GET|我的领取机会页，礼包领取页|
+|获取有效的领取机会数量|/ecosystem/giftPackage/getCount|GET|我的页，我的领取机会列表页，礼包展示页|关联会员服务-获取当前登录会员信息
+|领取礼包|/ecosystem/giftPackage/receive|POST|礼包领取页|关联促销服务-获取赠品信息；关联会员服务-获取当前登录会员信息
+|获取有效领取机会列表|/ecosystem/receiveChance/getList|GET|我的领取机会列表页|
+|获取当前订单匹配的最高礼包档位规则|/ecosystem/receiveChance/orderChance|GET|领取机会列表页||
+|轮询当前订单是否已经确认收货|/ecosystem/receiveChance/checkOrder|GET|提货码展示页||
+|获取机会对应的礼包列表|/ecosystem/receiveChance/getMemberChancePack|GET|礼包领取页|关联促销服务-获取赠品信息
+
+
+## 三、接口详情
+
+### 获取礼包展示列表
+
+* 路由:/ecosystem/giftPackage/getList
+* 请求方式：GET
+* 说明：分档位展示
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|totalCount|int|档位总数
+|ruleGiftPackList.activityRule.id|Long|档位ID
+|ruleGiftPackList.activityRule.name|String|档位名称
+|ruleGiftPackList.activityRule.conditionAmount|BigDecimal|档位条件
+|giftPackList.activityItemId|long|子活动(礼包)编号
+|giftPackList.merchantGift.id|Long|赠品ID
+|giftPackList.merchantGift.name|String|赠品名称
+|giftPackList.merchantGift.imageName|String|赠品图片
+|giftPackList.activityRule.ID|Long|赠品所在档位
+|giftPackList.totalCount|int|此档位下的赠品数量
+
+* 返回示例：
+
+```json
+{
+    "totalCount": 1,
+    "ruleGiftPackList": [
+        {
+            "activityRule": {
+                "id": 216,
+                "name": "满0元可领",
+                "conditionAmount": 0,
+            },
+            "giftPackList": [
+                {
+                    "activityItemId": 218,
+                    "merchantGift": {
+                        "id": 88,
+                        "name": "MQD到店兑换赠品-1",
+                        "imageName": "merchantGift/image/61mz85k7hkg1505384218051.jpg",
+                    },
+                    "activityRule": {
+                        "id": 216,
+                        "name": "满0元可领",
+                        "conditionAmount": 0,
+                    },
+                    "status": "2"
+                },
+                {}
+            ],
+            "totalCount": 1
+        },
+        {}
+    ]
+}
+```
+
+### 获取礼包详情
+
+* 路由:/ecosystem/giftPackage/getDetails
+* 请求方式：GET
+* 说明：获取礼包详情，包括领取说明，赠品信息，档位信息，优惠券信息等
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|activityItemId|long|是|子活动(礼包)ID
+|giftId|long|是|赠品ID
+|activityRuleId|long|是|活动规则(档位)ID
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|name|String|礼包名称
+|logo|String|商户LOGO
+|merchantGift.id|Long|赠品编号
+|merchantGift.remark|String|领取说明
+|merchantGift.merchantId|Long|商户ID(用于去下单)
+|merchantGift.name|String|赠品名称
+|merchantGift.imageName|String|赠品主图
+|activityRule.id|Long|档位ID
+|activityRule.name|String|档位名称
+|couponList.couponReleaseId|Long|优惠券ID
+|couponList.type|String|优惠券类型('0'=立减券；'1'=满减券)
+|couponList.sourceType|String|优惠券种类('A'-淘璞券，'B'-商户券)
+|couponList.couponAmount|BigDecimal|优惠金额
+|couponList.conditionAmount|BigDecimal|使用条件
+|couponList.effectiveDays|int|有效天数
+
+* 返回示例：
+
+```json
+{
+    "name": "爱法贝大礼包",
+    "logo": "activityPicture/image/r7rgn8bxks1505456165861.jpg",
+    "merchantGift": {
+        "id": 87,
+        "createTime": 1505379527000,
+        "updateTime": 1515077782000,
+        "merchantId": 152,
+        "companyName": null,
+        "catId": 479,
+        "catName": null,
+        "name": "爱法贝快递娃娃机",
+        "type": "2",
+        "costPrice": 123,
+        "marketPrice": 123,
+        "giftCount": 100,
+        "remainCount": 100,
+        "allocateCount": 85,
+        "limitCount": 0,
+        "effectiveDays": 14,
+        "status": "1",
+        "imageName": "merchantGift/image/s40lz8bd97r1505379428152.jpg",
+        "remark": "1.此赠品支持快递配送\n2.领取成功后，填写信息，提交兑换即可"
+    },
+    "activityRule": {
+        "id": 217,
+        "activityId": 64,
+        "name": "满50元可领",
+        "status": "1",
+        "scope": "0",
+        "conditionAmount": 50
+    },
+    "couponList": [
+        {
+            "couponReleaseId": 60,
+            "type": "1",
+            "name": "爱法贝满88元减50元券",
+            "conditionAmount": 88,
+            "couponAmount": 50,
+            "activityRuleId": 217,
+            "ruleScope": "0",
+            "ruleAmount": 50,
+            "status": null,
+            "brandshopUrl": null,
+            "sourceType": "B",
+            "couponCount": 5,
+            "receiveCount": 2,
+            "limitCount": 1,
+            "memberReceiveCount": 0,
+            "defaultSelected": false,
+            "effectiveDays": 3
+        }
+    ]
+}
+```
+
+### 获取礼包筛选参数信息
+
+* 路由:/ecosystem/giftPackage/getFilter
+* 请求方式：GET
+* 说明：包括礼包类别、礼包活动规则（领取条件）、赠品类型，礼包所在城市等
+
+##### 【输入参数】
+
+无
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|categoryList.catId|long|种类ID
+|categoryList.name|String|种类名称
+|activityRuleList.id|long|档位ID
+|activityRuleList.name|long|档位名称
+|activityRuleList.conditionAmount|BigDecimal|档位条件
+|activityRegionList.id|long|城市ID
+|activityRegionList.name|String|城市名称
+
+* 返回示例：
+
+```json
+{
+    "categoryList": [
+        {
+            "catId": 60,
+            "name": "连衣裙"
+        },
+        {}
+    ],
+    "activityRuleList": [
+        {
+            "id": 216,
+            "name": "满0元可领",
+            "conditionAmount": 0
+        },
+        {}
+    ],
+    "activityRegionList": [
+        {
+            "id": 310100,
+            "name": "上海市"
+        },
+        {}
+    ]
+}
+```
+
+### 获取礼包领取门店列表
+
+* 路由:/ecosystem/giftPackage/getReceivableBrandshopList
+* 请求方式：GET
+* 说明：获取赠品关联门店且剔除已分配数量(allocateCount) <= 已领取数量（receiveCount）的门店，且列表按照由近到远排序。
+* 注：本接口主要用于礼包领取页
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|activityItemId|long|是|子活动(礼包)ID
+|giftId|long|是|赠品ID
+|latitude|long|是|维度
+|longitude|long|是|经度
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|brandshopId|long|门店ID
+|brandshopName|String|门店名称
+|distance|Double|门店距离
+|brandshopAddress|String|门店地址
+
+* 返回示例：
+
+```json
+[
+    {
+        "distance": 0.49,
+        "brandshopId": 254,
+        "brandshopName": "MQD上海五角场店",
+        "allocateCount": 25,
+        "receiveCount": 5,
+        "exchangeCount": 1,
+        "brandshopAddress": "上海市杨浦区国宾路58号宝大祥一楼MQD专柜",
+        "id": 631
+    },
+    {}
+]
+```
+
+### 获取礼包领取门店列表(详情页展示用)
+
+* 路由:/ecosystem/giftPackage/getBrandshopList
+* 请求方式：GET
+* 注：本接口主要用于礼包详情页
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|activityItemId|long|是|子活动(礼包)ID
+|giftId|long|是|赠品ID
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|brandshopId|long|门店ID
+|brandshopName|String|门店名称
+
+* 返回示例：
+
+```json
+[
+    {
+        "distance": 0.49,
+        "brandshopId": 254,
+        "brandshopName": "MQD上海五角场店",
+        "allocateCount": 25,
+        "receiveCount": 5,
+        "exchangeCount": 1,
+        "brandshopAddress": "上海市杨浦区国宾路58号宝大祥一楼MQD专柜",
+        "id": 631
+    },
+    {}
+]
+```
+
+### 获取当前有效的父活动信息
+
+* 路由:/ecosystem/receiveChance/getParentsActivity
+* 请求方式：GET
+* 说明:获取当前有效父活动信息主要用于获取领取说明
+
+##### 【输入参数】
+
+无
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|introduction|String|领取说明
+
+* 返回示例：
+
+```json
+{
+    "endTime": 1536854400000,
+    "introduction": "<p>1.<span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">在淘璞平台购物满一定金额并完成收货确认即可获得1次礼包领取机会，每次领取机会7天有效，实付金额越高，礼包可选择范围越大。</span></span></p>\n\n<p align=\"left\" style=\"margin-left:57.0pt; text-align:left\">&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">2.在每次机会有效期内，用户可选择领取其中一份品牌礼包，快递礼包可直接领取，自提礼包需选择门店后完成领取。</span></span></p>\n\n<p align=\"left\" style=\"margin-left:57.0pt; text-align:left\">&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">3.用户领取礼包后，支持快递配送的赠品，可提交收货信息完成兑换；支持门店自提的赠品，需到门店出示二维码，完成兑换。</span></span></p>\n\n<p align=\"left\" style=\"margin-left:57.0pt; text-align:left\">&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">4.用户可到&ldquo;我的&rdquo;&mdash;&mdash;&ldquo;赠品&rdquo;中查看所有已领取/已兑换赠品；在 &ldquo;我的&rdquo;-&ldquo;优惠券&rdquo;中查看所有已领取/已使用优惠券。</span></span></p>\n\n<p align=\"left\" style=\"margin-left:57.0pt; text-align:left\">&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">5.对于以不正当方式参与活动的用户，包括但不限于恶意套现、恶意下单、利用程序漏洞等，淘璞有权在不事先通知的情况下取消其参与活动的资格，并收回您获得的礼包。</span></span></p>\n\n<p align=\"left\" style=\"margin-left:57.0pt; text-align:left\">&nbsp;</p>\n\n<p><span style=\"font-size:10.5pt\"><span style=\"font-family:宋体\">6.活动解释权归上海淘璞电子商务有限公司所有，淘璞客户服务电话：400-891-6161。</span></span></p>\n",
+    "beginTime": 1505318400000,
+    "brief": "淘璞平台在2017年6月2日至2017年12月31日期间以实现为商户及商户线下实体门店增加客流量为目的发起本次生态圈共享活动；申请参与生态圈活动的商户需要创建活动赠品以供在其他商户门店内下单且满足设置条件金额的用户提供可领取礼包。",
+    "name": "生态圈活动0914测试",
+    "id": 64
+}
+```
+
+### 获取有效的领取机会数量
+
+* 路由:/ecosystem/receiveChance/getCount
+* 请求方式：GET
+* 说明:无
+
+##### 【输入参数】
+
+无
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|giftPackCount|int|机会数量
+
+* 返回示例：
+
+```json
+{
+    "giftPackCount": 1
+}
+```
+
+### 领取礼包
+
+* 路由:/ecosystem/receiveChance/receiveGift
+* 请求方式：POST
+* 说明:会员领取礼包，并领取优惠券
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|ruleId|long|是|规则ID
+|giftId|long|是|赠品ID
+|merchantId|long|是|商户ID
+|brandshopId|long|是|门店ID
+|activityItemId|long|是|子活动ID
+|memberGiftPacksSeq|long|是|机会ID
+|latitude|long|是|纬度
+|longitude|long|是|经度
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|brandshopId|Long|门店ID
+|giftId|Long|赠品ID
+|giftCode|String|赠品领取码
+|giftType|String|赠品类型
+|memberGiftAccountId|Long|领取成功赠品后赠品账户ID
+|anyCoupons|int|优惠券领取个数
+
+* 返回示例：
+
+```json
+{
+    "brandshopId":125,
+    "giftId":23,
+    "giftCode":"",
+    "giftType":"",
+    "memberGiftAccountId":,
+    "anyCoupons":2
+}
+```
+
+### 获取有效领取机会列表
+
+* 路由:/ecosystem/receiveChance/getList
+* 请求方式：GET
+* 说明:获取当前会员的机会列表，并按剩余时间由大到小排列
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|limit|int|否|
+|start|int|否|
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|dataList.chanceId|Long|机会ID
+|dataList.orderId|String|对应订单ID
+|dataList.closingTime|Date|机会截止时间
+|dataList.source|String|机会来源
+|dataList.conditionAmount|BigDecimal|对应最高档位礼包
+
+* 返回示例：
+
+```json
+{
+    "dataList": [
+        {
+            "source": "订单",
+            "closingTime": 1518399482000,
+            "orderId": "20180125081456",
+            "conditionAmount": 0,
+            "chanceId": 826
+        }
+    ]
+}
+```
+
+### 获取当前订单匹配的最高礼包档位规则
+
+* 路由:/ecosystem/receiveChance/orderChance
+* 请求方式：GET
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|orderId|long|是|订单ID
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|source|String|机会来源
+|closingTime|Date|到期时间
+|orderId|String|对应订单ID
+|conditionAmount|BigDecimal|档位规则条件金额
+|chanceId|Long|机会ID
+
+* 返回示例：
+
+```json
+{
+    "source": "订单",
+    "closingTime": 1522132206000,
+    "orderId": "20180320079951",
+    "conditionAmount": 100,
+    "chanceId": 851
+}
+```
+
+
+### 轮询当前订单是否已经确认收货
+
+* 路由:/ecosystem/receiveChance/checkOrder
+* 请求方式：GET
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|id|long|是|订单Seq
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|source|String|机会来源
+|closingTime|Date|到期时间
+|orderId|String|对应订单ID
+|conditionAmount|BigDecimal|档位规则条件金额
+|chanceId|Long|机会ID
+
+* 返回示例：
+
+```json
+{
+    "haveChance": true,//时候有领取机会
+    "giftpacksChance": {//领取机会信息
+        "source": "订单",
+        "closingTime": 1522132206000,
+        "orderId": "20180320079951",
+        "conditionAmount": 100,
+        "chanceId": 851
+    },
+    "order": {//订单信息
+        "status": "3",
+        "brandshopSeq": 133,
+        "merchantSeq": 150,
+        "memberSeq": 641,
+        "couponAmount": 0,
+        "discountAmount": 0,
+        "orderId": "20180320079951",
+        "brandshop": null,
+        "deliveryType": "1",
+        "brandshopUserId": 769,
+        "totalAmount": 280,
+        "merchantCouponAmount": 0,
+        "payAmount": 280,
+        "payTime": 1521527405000,
+        "needSplite": false,
+        "orderAddress": {
+            "phone": null,
+            "provinceSeq": null,
+            "citySeq": null,
+            "countrySeq": null,
+            "detailAddress": null,
+            "areaName": null,
+            "orderSeq": 42014,
+            "name": null
+        },
+        "submitDate": "2018-03-20",
+        "submitTime": 1521527387000,
+        "payDate": "2018-03-20",
+        "integralAmount": 0,
+        "userType": "B",
+        "orderType": "0",
+        "consigner": 769,
+        "receiptTime": 1521527406000,
+        "id": 42014
+    }
+}
+```
+
+### 获取机会对应的礼包列表
+
+* 路由:/ecosystem/receiveChance/getMemberChancePack
+* 请求方式：GET
+* 说明:无
+
+##### 【输入参数】
+
+|参数名|类型|是否必须|说明|
+|:------|:------|:------|:------|
+|memberGiftPacksSeq|long|是|机会ID
+|limit|int|否|
+|start|int|否|
+
+##### 【输出结果】
+
+* 输出参数
+
+|参数名|类型|说明|
+|:------|:------|:------|
+|conditionAmount|BigDecimal|本次机会下最高档位
+|introduction|String|领取说明
+|giftPacksChanceDO.id|Long|机会ID
+|giftPacksChanceDO.closingTime|Date|机会截止时间
+|chanceGiftPackList.activityItemId|Long|子活动(礼包)ID
+|chanceGiftPackList.dataList.id|Long|赠品ID
+|chanceGiftPackList.dataList.name|String|赠品名称
+|chanceGiftPackList.dataList.imageName|String|赠品图片
+|chanceGiftPackList.dataList.type|String|赠品类型 '0'-预约兑换 '1'-到店兑换 '2'-立即兑换
+
+* 返回示例：
+
+```json
+{
+    "conditionAmount": 0,
+    "introduction": "",
+    "giftPacksChanceDO": {//本次机会对象
+        "merchantSeq": 106,
+        "payAmount": 0,
+        "status": 0,
+        "count": 0,
+        "source": "A",
+        "closingTime": 1518399482000,
+        "orderId": "20180125081456",
+        "activityId": 64,
+        "userSeq": 641,
+        "receiptTime": 1517794682000,
+        "id": 826
+    },
+    "chanceGiftPackList": {//机会下赠品列表
+        "dataList": [
+            {
+                "activityItemId": 218,
+                "ruleId": 216,
+                "merchantGift": {
+                    "limitCount": 0,
+                    "remark": null,
+                    "merchantId": 213,
+                    "giftCount": 0,
+                    "allocateCount": 0,
+                    "remainCount": 0,
+                    "effectiveDays": 0,
+                    "imageName": "merchantGift/image/61mz85k7hkg1505384218051.jpg",
+                    "name": "MQD到店兑换赠品-1",
+                    "type": "1",
+                    "id": 88
+                },
+                "allocateCount": 0,
+                "giftId": 88,
+                "ruleName": null,
+                "receiveCount": 0,
+                "exchangeCount": 0,
+                "id": 631
+            },
+            {}
+        ]
+    }
+}
+```

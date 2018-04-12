@@ -1,0 +1,12 @@
+| 接口描述|新接口地址|请求类型|对应页面|关联服务与备注|
+|:-------------|:-------------| :-----:|:------|:------|
+|[会员报名信息提交](#会员报名信息提交)|/activity/signupActivity/submitInfo|POST|报名信息填写页|关联[会员服务](https://project.91topbaby.com/projects/topbaby/wiki/%E4%BC%9A%E5%91%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API)-获取当前登录会员信息
+|[获取活动列表](#获取活动列表)|/activity/signupActivity/getPageList|GET|活动列表页|
+|[获取活动详细信息](#获取活动详细信息)|/activity/signupActivity/getDetail|GET|活动详情页，报名成功页|
+|[获取活动位置信息](#获取活动位置信息)|/activity/signupActivity/map|GET|活动位置导航页|
+|[获取活动场次信息](#获取活动场次信息)|/activity/signupActivity/getActivityEventList|GET|活动详情页|
+|[获取活动报名表单项](#获取活动报名表单项)|/activity/signupActivity/getActivityApplyFrom|GET|报名信息填写页|
+|[报名活动签到](#报名活动签到)|/activity/member/SignIn|POST|我的活动列表页，我的活动详情页|关联[会员服务](https://project.91topbaby.com/projects/topbaby/wiki/%E4%BC%9A%E5%91%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API)-获取当前登录会员信息
+|[会员扫码签到](#会员扫码签到)|/activity/member/ScanCodeSignIn|POST||关联[会员服务](https://project.91topbaby.com/projects/topbaby/wiki/%E4%BC%9A%E5%91%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API)-获取当前登录会员信息
+|[获取会员参与活动列表](#获取会员参与活动列表)|/activity/member/getPageList|GET|我的活动列表页|关联[会员服务](https://project.91topbaby.com/projects/topbaby/wiki/%E4%BC%9A%E5%91%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API)-获取当前登录会员信息
+|[获取会员报名活动详细信息](#获取会员报名活动详细信息)|/activity/member/getDetails|GET|报名详情页|关联[会员服务](https://project.91topbaby.com/projects/topbaby/wiki/%E4%BC%9A%E5%91%98%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3API)-获取当前登录会员信息
